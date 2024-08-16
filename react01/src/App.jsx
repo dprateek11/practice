@@ -4,18 +4,23 @@ function App() {
 
   const [count, setCount] = useState(0)
 
+  return (
+    <div>
+      <CustomButton count={count} setCount={setCount}></CustomButton>
+    </div>
+  )
+}
 
+function CustomButton(props) {
 
   function onClickHandler() {
-    setCount(count + 1);
+    props.setCount(props.count + 1);
     
   }
 
-  return (
-    <div>
-      <button onClick={onClickHandler}>Counter {count}</button>
-    </div>
-  )
+  return <div>
+    <button onClick={onClickHandler}>Counter {props.count}</button>
+  </div>
 }
 
 export default App
