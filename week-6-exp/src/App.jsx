@@ -1,25 +1,18 @@
-import { useState } from "react"
-
 function App() {
 
   return (
     <>
-      <CarWrapper innerComponent={<TextComponent/>}></CarWrapper>
+      <CarWrapper>
+        Hi There
+      </CarWrapper>
     </>
   )
 }
 
-function CarWrapper({innerComponent}){
+function CarWrapper({children}){
   return <div style={{border:"2px solid black"}}>
-    {innerComponent}
+    {children}
     </div>
 }
-
-function TextComponent(){
-  return <div>
-      <h1>Hi there!</h1>
-  </div>
-}
-
 
 export default App
