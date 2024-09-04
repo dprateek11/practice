@@ -1,32 +1,33 @@
-import { useState } from "react"
+import React, { useState } from "react"
 
 function App() {
 
-  return (
-    <>
-      <HeaderWithTitle />
-      <Header title="Dabas"></Header>
-    </>
-  )
-}
-
-function HeaderWithTitle(){
   const [title, setTitle] = useState("Prateek")
 
   function changeTitle(){
     setTitle(Math.random())
   }
 
-  return <div>
+  return (
+    <>
       <button onClick={changeTitle}>Click to change the title</button>
       <Header title={title}></Header>
-  </div>
+      <Header title="Dabas"></Header>
+      <Header title="Dabas"></Header>
+      <Header title="Dabas"></Header>
+      <Header title="Dabas"></Header>
+      <Header title="Dabas"></Header>
+      <Header title="Dabas"></Header>
+      <Header title="Dabas"></Header>
+
+    </>
+  )
 }
 
-function Header({title}) {
+const Header = React.memo(function Header({title}) {
   return <div>
     {title}
   </div>
-}
+})
 
 export default App
