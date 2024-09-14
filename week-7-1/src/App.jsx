@@ -1,30 +1,42 @@
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-import { Suspense, lazy } from 'react';
-import { Landing } from './components/Landing';
-const Dashboard = lazy(() => import('./components/Dashboard'));
+import { useState } from "react";
+
 
 function App() {
+
+  const [count, setCount] = useState(0);
   return (
     <>
-      <BrowserRouter>
-        <Appbar />
-        <Routes>
-          <Route path='/dashboard' element={<Suspense fallback={"loading..."}><Dashboard /></Suspense>}></Route>
-          <Route path='/' element={<Landing />}></Route>
-        </Routes>
-      </BrowserRouter>
+      <Count count={count} setCount={setCount}/>
+      
     </>
   );
 }
 
-function Appbar() {
-  const navigate = useNavigate();
-  return (
-    <div>
-      <button onClick={() => navigate("/")}>Landing</button>
-      <button onClick={() => navigate("/dashboard")}>Dashboard</button>
-    </div>
-  );
+function Count ({count, setCount}) {
+  return <div>
+    <CountRenderer  count={count}/>
+
+    <Buttons count={count} setCount={setCount}/>
+  </div>
+}
+
+function CountRenderer({count}) {
+  return <div>
+    {count}
+  </div>
+}
+
+function Buttons ({count, setCount}) {
+  return <div>
+    <button onClick={() => {
+      setCount(count + 1)
+    }}>Increase</button>
+    <button onClick={() => {
+      setCount(count - 1)
+    }}>
+      Decrease
+    </button>
+  </div>
 }
 
 export default App;
