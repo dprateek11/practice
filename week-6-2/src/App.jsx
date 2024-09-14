@@ -1,30 +1,28 @@
-import { useState, useEffect } from "react";
-import axios from 'axios';
+import { useState } from "react";
 
 function App() {
 
-  const [todos, setTodos] = useState([])
+  const [counter, setCounter] = useState(0);
+  const [inputValue, setInputValue] = useState(1);
+ 
+  let count = 0;
+  for (let i = 1; i <= inputValue; i++) {
+    count = count + i;
+    console.log(count)
+  }
 
 
-  useEffect(()=>{
-    axios.get("https://sum-server.100xdevs.com")
-      .then(function (response) {
-        setTodos(response.data.todos)
-      })
-  },[]);
-  
   return (
     <>
-      {todos.map( todo => <Todo key={todo.id} title={todo.title} description={todo.description}></Todo>)}
+      <input type="text" onChange={function(e) {
+        setInputValue(e.target.value);
+      }} />
+      <p>Sum from 1 to {inputValue} is {count}</p>
+      <button onClick={() => {
+        setCounter(counter + 1);
+      }}>Counter {counter}</button>
     </>
   )
-}
-
-function Todo({ title, description }){
-  return <div>
-    {title}
-    {description}
-  </div>
 }
 
 export default App
